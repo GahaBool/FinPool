@@ -1,0 +1,24 @@
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: finpool
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 123Hapik879
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+    build: ./finpool  # Указываем путь к Dockerfile
+    command: python3 manage.py runserver 0.0.0.0:8000  # Указываем правильный путь к manage.py
+    volumes:
+      - ./finpool:/app  # Монтируем локальную директорию
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
