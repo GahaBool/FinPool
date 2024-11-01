@@ -6,5 +6,13 @@
     <title>FinPool</title>
 </head>
 <body>
+    <h1>FinPool App</h1>
+    <form method="POST">
+    <input id="id_new_item" placeholder="Enter a deposite" />
+    {% csrf_token %}
+    </form>
+    <table id="id_item_table">
+        <tr><td>{{ new_item_text}}</td></tr>
+    </table>
 </body>
 </html>
